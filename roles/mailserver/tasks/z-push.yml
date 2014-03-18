@@ -33,6 +33,9 @@
 - name: Copy z-push's config.php into place
   template: src=usr_share_z-push_config.php.j2 dest=/usr/share/z-push/config.php
 
+- name: Configure z-push logrotate
+  copy: src=etc_logrotate_z-push dest=/etc/logrotate.d/z-push owner=root group=root mode=0644
+
 - name: Configure z-push apache alias and php settings
   copy: src=etc_apache2_conf.d_z-push.conf dest=/etc/apache2/conf.d/z-push.conf
   notify: restart apache
